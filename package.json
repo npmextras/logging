@@ -1,0 +1,42 @@
+{
+    "name": "@npmextras/logging",
+    "version": "0.0.7",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": "https://github.com/npmextras/logging.git",
+    "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc --build",
+        "lint": "yarn lint:tsc && yarn lint:eslint",
+        "lint:eslint": "eslint ./src/**/*.ts",
+        "lint:tsc": "rm -rf /var/empty/logging && mkdir -p /var/empty/logging/ && tsc --outDir /var/empty/logging/",
+        "prepublishOnly": "tsc --build --clean && rm -rf ./dist/ && yarn build",
+        "watch": "tsc --build --watch"
+    },
+    "devDependencies": {
+        "@npmextras/eslint-config": "^0.0.9",
+        "eslint": "^6.8.0",
+        "husky": "^4.0.10",
+        "jest": "^24.9.0",
+        "lint-staged": "^9.5.0",
+        "prettier": "^1.19.1",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.7.5"
+    },
+    "dependencies": {
+        "@types/pino": "^5.15.3",
+        "pino": "^5.16.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --fix --no-ignore",
+            "git add"
+        ]
+    }
+}
