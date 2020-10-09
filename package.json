@@ -4,7 +4,6 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "repository": "https://github.com/npmextras/logging.git",
-    "publishConfig": { "registry": "https://npm.pkg.github.com/" },
     "license": "MIT",
     "scripts": {
         "build": "tsc --build",
